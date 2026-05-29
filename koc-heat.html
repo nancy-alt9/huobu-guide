@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>腾讯广告 · KOC短视频加热 · 多行业爆量实战</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-deep: #fef3e2;
+    --bg-card: #ffffff;
+    --border-subtle: rgba(0, 0, 0, 0.06);
+    --text-primary: #2a1a0a;
+    --text-secondary: #6a5040;
+    --text-muted: #9a8070;
+    --orange: #e65100;
+    --orange-light: #ff8f00;
+    --blue: #1565c0;
+    --green: #2e7d32;
+    --red: #c62828;
+    --purple: #6a1b9a;
+  }
+
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== BACKGROUND ===== */
+  .bg-glow { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .orb {
+    position: absolute; border-radius: 50%; filter: blur(140px);
+    animation: drift 20s ease-in-out infinite alternate;
+  }
+  .orb-1 { width: 700px; height: 700px; background: #ffcc80; opacity: 0.25; top: -15%; left: -10%; }
+  .orb-2 { width: 600px; height: 600px; background: #ffe0b2; opacity: 0.2; bottom: 5%; right: -8%; animation-delay: -7s; }
+  .orb-3 { width: 450px; height: 450px; background: #fff3e0; opacity: 0.3; top: 35%; left: 45%; animation-delay: -14s; }
+  @keyframes drift {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(40px, -30px) scale(1.08); }
+  }
+
+  .grid-pattern {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(230,81,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(230,81,0,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 36px 32px 48px; }
+
+  /* ===== HEADER ===== */
+  .header { text-align: center; margin-bottom: 36px; }
+  .tag-line {
+    display: inline-block; font-size: 11px; font-weight: 600; color: #e65100;
+    letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px;
+    padding: 8px 24px; background: rgba(230,81,0,0.08);
+    border: 1px solid rgba(230,81,0,0.2); border-radius: 100px;
+  }
+  .header h1 {
+    font-size: 36px; font-weight: 900; line-height: 1.2; margin-bottom: 16px;
+    background: linear-gradient(135deg, #e65100 0%, #ff8f00 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .subtitle { font-size: 15px; color: var(--text-muted); max-width: 700px; margin: 0 auto; line-height: 1.7; }
+  .brand { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); position: absolute; top: 36px; right: 32px; }
+  .brand-dot { width: 6px; height: 6px; background: #e65100; border-radius: 50%; display: inline-block; }
+
+  /* ===== ADVANTAGE TAGS ===== */
+  .advantages {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+    margin-bottom: 36px;
+  }
+  .adv-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px; border-radius: 100px;
+    background: #ffffff; border: 1px solid rgba(230,81,0,0.15);
+    font-size: 13px; font-weight: 600; color: #e65100;
+    box-shadow: 0 2px 8px rgba(230,81,0,0.06);
+    transition: transform 0.2s;
+  }
+  .adv-tag:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(230,81,0,0.12); }
+
+  /* ===== INTRO SECTION ===== */
+  .intro-section {
+    background: #ffffff; border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 20px; padding: 28px 32px; margin-bottom: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .intro-title {
+    font-size: 16px; font-weight: 800; color: var(--text-primary); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .intro-desc {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.8;
+    padding: 16px 20px; border-radius: 14px;
+    background: rgba(230,81,0,0.04); border: 1px solid rgba(230,81,0,0.1);
+  }
+
+  /* ===== CASE CARD ===== */
+  .case-card {
+    background: #ffffff; border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 20px; padding: 32px; margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .case-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+
+  .case-header {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 24px;
+    padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .case-icon {
+    width: 56px; height: 56px; border-radius: 16px; display: flex;
+    align-items: center; justify-content: center; font-size: 24px;
+    flex-shrink: 0;
+  }
+  .case-icon.pet { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+  .case-icon.dairy { background: linear-gradient(135deg, #e3f2fd, #bbdefb); }
+  .case-icon.snack { background: linear-gradient(135deg, #fce4ec, #f8bbd0); }
+
+  .case-meta h3 { font-size: 18px; font-weight: 800; color: var(--text-primary); margin-bottom: 4px; }
+  .case-meta .case-subtitle { font-size: 13px; color: var(--text-muted); }
+  .case-badge {
+    margin-left: auto; padding: 6px 14px; border-radius: 100px;
+    font-size: 11px; font-weight: 700; color: #fff;
+    background: linear-gradient(135deg, #e65100, #ff8f00);
+  }
+
+  /* KOC Info */
+  .koc-info {
+    display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .koc-item {
+    flex: 1; min-width: 140px; padding: 14px 16px; border-radius: 12px;
+    background: rgba(230,81,0,0.04); border: 1px solid rgba(230,81,0,0.1);
+    text-align: center;
+  }
+  .koc-item .koc-label { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+  .koc-item .koc-value { font-size: 16px; font-weight: 800; color: #e65100; }
+
+  /* Strategy */
+  .strategy-tag {
+    display: inline-block; padding: 6px 14px; border-radius: 100px;
+    font-size: 12px; font-weight: 600; color: #1565c0;
+    background: rgba(21,101,192,0.08); border: 1px solid rgba(21,101,192,0.15);
+    margin-bottom: 16px;
+  }
+
+  /* Metrics */
+  .metrics-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px; margin-bottom: 20px;
+  }
+  .metric-card {
+    text-align: center; padding: 18px 12px; border-radius: 14px;
+    border: 1px solid rgba(0,0,0,0.06); background: #fafafa;
+  }
+  .metric-card.highlight {
+    background: linear-gradient(135deg, rgba(230,81,0,0.04), rgba(255,143,0,0.08));
+    border: 1px solid rgba(230,81,0,0.2);
+  }
+  .metric-label { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+  .metric-value {
+    font-size: 28px; font-weight: 900; line-height: 1;
+    background: linear-gradient(135deg, #e65100, #ff8f00);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .metric-value.blue {
+    background: linear-gradient(135deg, #0d47a1, #1e88e5);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .metric-value.green {
+    background: linear-gradient(135deg, #2e7d32, #43a047);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .metric-value.purple {
+    background: linear-gradient(135deg, #6a1b9a, #ab47bc);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .metric-sub { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+
+  /* Highlights */
+  .highlights {
+    padding: 16px 20px; border-radius: 14px;
+    background: rgba(46,125,50,0.04); border: 1px solid rgba(46,125,50,0.12);
+  }
+  .highlights h4 {
+    font-size: 13px; font-weight: 700; color: #2e7d32; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .highlights ul { list-style: none; padding: 0; }
+  .highlights ul li {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.8;
+    padding-left: 18px; position: relative;
+  }
+  .highlights ul li::before {
+    content: '✓'; position: absolute; left: 0; color: #2e7d32; font-weight: 700; font-size: 12px;
+  }
+
+  /* ===== SUMMARY SECTION ===== */
+  .summary-section {
+    background: linear-gradient(135deg, #fff8e1, #fff3e0);
+    border: 1px solid rgba(230,81,0,0.15);
+    border-radius: 20px; padding: 28px 32px; margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(230,81,0,0.06);
+  }
+  .summary-title {
+    font-size: 16px; font-weight: 800; color: var(--text-primary); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .summary-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  @media (max-width: 640px) { .summary-grid { grid-template-columns: 1fr; } }
+  .summary-item {
+    text-align: center; padding: 20px 16px; border-radius: 14px;
+    background: #ffffff; border: 1px solid rgba(0,0,0,0.06);
+  }
+  .summary-item .sum-icon { font-size: 28px; margin-bottom: 8px; }
+  .summary-item .sum-label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+  .summary-item .sum-value { font-size: 22px; font-weight: 900; color: #e65100; }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    text-align: center; padding: 32px; background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.06); border-radius: 20px;
+    margin-bottom: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .cta-section h3 { font-size: 18px; font-weight: 800; margin-bottom: 12px; color: var(--text-primary); }
+  .cta-section p { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.7; }
+  .cta-btn {
+    display: inline-block; padding: 14px 36px; border-radius: 100px;
+    background: linear-gradient(135deg, #e65100, #ff8f00);
+    color: #fff; font-size: 14px; font-weight: 700;
+    text-decoration: none; box-shadow: 0 4px 16px rgba(230,81,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(230,81,0,0.4); }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center; font-size: 12px; color: var(--text-muted);
+    padding: 20px 0; border-top: 1px solid rgba(0,0,0,0.06); margin-top: 12px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .container { padding: 24px 16px 36px; }
+    .header h1 { font-size: 28px; }
+    .case-card { padding: 24px 20px; }
+    .case-header { flex-wrap: wrap; }
+    .case-badge { margin-left: 0; margin-top: 8px; }
+    .koc-info { flex-direction: column; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .summary-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-glow">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<div class="grid-pattern"></div>
+
+<div class="container">
+
+  <span class="brand"><span class="brand-dot"></span>腾讯广告</span>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="tag-line">KOC · 短视频加热</div>
+    <h1>KOC 短视频加热<br>多行业爆量实战案例</h1>
+    <p class="subtitle">通过视频号主页内容推广，借助 KOC 达人矩阵素材加热，实现 CTR/CVR 大幅提升，助力品牌低成本高效放量</p>
+  </div>
+
+  <!-- ADVANTAGE TAGS -->
+  <div class="advantages">
+    <div class="adv-tag">🎯 精准加热放大</div>
+    <div class="adv-tag">📈 CTR/CVR双提升</div>
+    <div class="adv-tag">💰 低成本起量</div>
+    <div class="adv-tag">🔥 KOC素材 vs 常规素材</div>
+    <div class="adv-tag">⚡ 快速测出爆款</div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro-section">
+    <div class="intro-title">💡 什么是 KOC 短视频加热？</div>
+    <div class="intro-desc">
+      <strong>KOC（Key Opinion Consumer）</strong>即关键意见消费者，通过大量真实用户/达人创作的短视频内容，配合腾讯广告视频号主页内容推广进行付费加热，将优质 KOC 素材精准触达目标人群。相比品牌自产常规素材，KOC 内容更真实、更贴近用户，加热后在 CTR、CVR 等转化指标上有显著优势。
+    </div>
+  </div>
+
+  <!-- ===== 案例一：卫仕 ===== -->
+  <div class="case-card">
+    <div class="case-header">
+      <div class="case-icon pet">🐾</div>
+      <div class="case-meta">
+        <h3>卫仕</h3>
+        <div class="case-subtitle">宠物食品行业 · 视频号主页内容推广</div>
+      </div>
+      <div class="case-badge">宠物食品</div>
+    </div>
+
+    <div class="koc-info">
+      <div class="koc-item">
+        <div class="koc-label">KOC 达人数量</div>
+        <div class="koc-value">33+</div>
+      </div>
+      <div class="koc-item">
+        <div class="koc-label">投放方式</div>
+        <div class="koc-value">视频号主页推广</div>
+      </div>
+      <div class="koc-item">
+        <div class="koc-label">内容形式</div>
+        <div class="koc-value">KOC短视频素材</div>
+      </div>
+    </div>
+
+    <div class="strategy-tag">📊 核心效果指标</div>
+
+    <div class="metrics-grid">
+      <div class="metric-card highlight">
+        <div class="metric-label">KOC推广日耗峰值</div>
+        <div class="metric-value">2.6w</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">CTR vs 常规素材</div>
+        <div class="metric-value blue">+98.87%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">CVR vs 常规素材</div>
+        <div class="metric-value green">+40%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">ROI vs 常规素材</div>
+        <div class="metric-value purple">+54.57%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">单达人素材累计消耗</div>
+        <div class="metric-value">11w+</div>
+      </div>
+    </div>
+
+    <div class="highlights">
+      <h4>💡 案例亮点</h4>
+      <ul>
+        <li><strong>CTR 领先翻倍：</strong>KOC 素材 CTR 4.2%，对比常规素材提升 98.87%，真实内容更吸引点击</li>
+        <li><strong>转化效率提升：</strong>CVR 提升 14%→常规素材+40%，ROI 对比常规素材高出 54.57%</li>
+        <li><strong>单人爆发力强：</strong>单达人素材累计消耗突破 11w+，验证优质 KOC 素材的长效跑量能力</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== 案例二：益美滋 ===== -->
+  <div class="case-card">
+    <div class="case-header">
+      <div class="case-icon dairy">🥛</div>
+      <div class="case-meta">
+        <h3>益美滋</h3>
+        <div class="case-subtitle">乳制品行业 · 视频号主页内容推广</div>
+      </div>
+      <div class="case-badge">乳制品</div>
+    </div>
+
+    <div class="koc-info">
+      <div class="koc-item">
+        <div class="koc-label">KOC 达人数量</div>
+        <div class="koc-value">260+</div>
+      </div>
+      <div class="koc-item">
+        <div class="koc-label">投放方式</div>
+        <div class="koc-value">视频号主页推广</div>
+      </div>
+      <div class="koc-item">
+        <div class="koc-label">核心策略</div>
+        <div class="koc-value">KOC资产激活</div>
+      </div>
+    </div>
+
+    <div class="strategy-tag">📊 核心效果指标</div>
+
+    <div class="metrics-grid">
+      <div class="metric-card highlight">
+        <div class="metric-label">KOC推广日耗峰值</div>
+        <div class="metric-value">2.3w+</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">助力新增消耗占比</div>
+        <div class="metric-value blue">14%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">CTR vs 常规素材</div>
+        <div class="metric-value green">+48.33%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">CVR vs 常规素材</div>
+        <div class="metric-value purple">+48.21%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">单达人素材累计消耗</div>
+        <div class="metric-value">11w+</div>
+      </div>
+    </div>
+
+    <div class="highlights">
+      <h4>💡 案例亮点</h4>
+      <ul>
+        <li><strong>KOC 资产快速激活：</strong>已有 KOC 资产沉淀，快速接入 260+ 达人进行素材加热推广</li>
+        <li><strong>达人素材 vs 常规 CTR 提升 48%：</strong>KOC 内容 CTR 4.7%+，远超常规素材表现</li>
+        <li><strong>CVR 同步飙升：</strong>转化率 15%+ vs 常规素材提升 48.21%，证明真实口碑内容的转化力</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== 案例三：妙可蓝多 ===== -->
+  <div class="case-card">
+    <div class="case-header">
+      <div class="case-icon snack">🧀</div>
+      <div class="case-meta">
+        <h3>妙可蓝多</h3>
+        <div class="case-subtitle">乳制品/奶酪行业 · 视频号主页内容推广</div>
+      </div>
+      <div class="case-badge">奶酪品牌</div>
+    </div>
+
+    <div class="koc-info">
+      <div class="koc-item">
+        <div class="koc-label">KOC 达人数量</div>
+        <div class="koc-value">3000+</div>
+      </div>
+      <div class="koc-item">
+        <div class="koc-label">投放方式</div>
+        <div class="koc-value">视频号主页推广</div>
+      </div>
+      <div class="koc-item">
+        <div class="koc-label">合作时长</div>
+        <div class="koc-value">4个月</div>
+      </div>
+    </div>
+
+    <div class="strategy-tag">📊 核心效果指标</div>
+
+    <div class="metrics-grid">
+      <div class="metric-card highlight">
+        <div class="metric-label">双率表现 CTR</div>
+        <div class="metric-value">6%+</div>
+      </div>
+      <div class="metric-card highlight">
+        <div class="metric-label">双率表现 CVR</div>
+        <div class="metric-value green">7.9%+</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">ROI：ADQ vs 微信豆</div>
+        <div class="metric-value blue">+46%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">累计合作达人</div>
+        <div class="metric-value purple">2000+</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">产出素材量</div>
+        <div class="metric-value">5000+条</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">带货 GMV</div>
+        <div class="metric-value">千万级</div>
+      </div>
+    </div>
+
+    <div class="highlights">
+      <h4>💡 案例亮点</h4>
+      <ul>
+        <li><strong>入局仅 4 个月快速起量：</strong>通过团长机构快速拓展近 2000 位达人，累计合作 KOC 3000+</li>
+        <li><strong>海量素材沉淀：</strong>产出 5000+ 条 KOC 素材，形成庞大的内容资产库，持续为投放提供优质弹药</li>
+        <li><strong>GMV 千万级突破：</strong>带货 GMV 达千万级，ROI 相比微信豆提升 46%，验证 ADQ 加热 KOC 的商业化效率</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== SUMMARY ===== -->
+  <div class="summary-section">
+    <div class="summary-title">🏆 KOC 加热整体表现</div>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="sum-icon">📈</div>
+        <div class="sum-label">CTR 平均提升</div>
+        <div class="sum-value">48%~99%</div>
+      </div>
+      <div class="summary-item">
+        <div class="sum-icon">🎯</div>
+        <div class="sum-label">CVR 平均提升</div>
+        <div class="sum-value">40%~48%</div>
+      </div>
+      <div class="summary-item">
+        <div class="sum-icon">💰</div>
+        <div class="sum-label">ROI 提升</div>
+        <div class="sum-value">46%~55%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta-section">
+    <h3>🚀 想让你的客户也用 KOC 加热起量？</h3>
+    <p>视频号主页内容推广 × KOC 矩阵素材，已在宠物、乳制品等行业跑通<br>联系你的行业运营，获取 KOC 加热投放方案</p>
+    <a href="#" class="cta-btn">了解 KOC 加热方案 →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">© 腾讯广告 · KOC 短视频加热 ｜ 多行业爆量实战案例</div>
+
+  <!-- 不蒜子访问统计 -->
+  <div style="text-align:center; padding:12px 0 20px; font-size:12px; color:#999;">
+    本页总访问量 <span id="busuanzi_value_site_pv" style="color:#e65100; font-weight:bold;">-</span> 次 | 
+    访客数 <span id="busuanzi_value_site_uv" style="color:#e65100; font-weight:bold;">-</span> 人
+  </div>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</div>
+
+</body>
+</html>
