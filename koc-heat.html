@@ -276,18 +276,20 @@
   }
   .screenshots-row {
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+    max-width: 420px;
   }
   .screenshots-row.wide {
     grid-template-columns: 1fr;
+    max-width: 520px;
   }
   .shot-item {
-    border-radius: 12px; overflow: hidden;
+    border-radius: 10px; overflow: hidden;
     border: 1px solid rgba(0,0,0,0.08);
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     transition: transform 0.2s;
   }
   .shot-item:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-  .shot-item img { width: 100%; height: auto; display: block; }
+  .shot-item img { width: 100%; height: auto; display: block; max-height: 260px; object-fit: cover; object-position: top; }
   .shot-caption {
     padding: 8px 12px; font-size: 11px; color: var(--text-muted);
     text-align: center; background: rgba(230,81,0,0.03);
