@@ -148,12 +148,16 @@
   /* === LEFT-RIGHT LAYOUT: 截图 + 亮点 === */
   .case-body {
     display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-    align-items: start;
+    align-items: stretch;
   }
 
   /* Left: Screenshots */
   .case-left {
     display: flex; flex-direction: column; gap: 8px;
+    background: rgba(255,152,0,0.04);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid rgba(255,152,0,0.1);
   }
   .case-left h4 {
     font-size: 12px; font-weight: 700; color: var(--text-muted);
@@ -189,6 +193,10 @@
   /* Right: Highlights */
   .case-right {
     display: flex; flex-direction: column; gap: 16px; justify-content: center;
+    min-height: 100%;
+  }
+  .case-right .highlights {
+    flex: 1; display: flex; flex-direction: column; justify-content: center;
   }
 
   .strategy-tag {
